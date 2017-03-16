@@ -544,18 +544,29 @@ jSelfmenu = {
 sleep 0.1;
  player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ====</t>",""];
  player addAction ["<t color=""#E74A4A"">== Back ==</t>", jMenu];
- player addAction ["- Kill/Destroy cursor", jDestroy];
- player addAction ["- Car Delete", jDelete];
- player addAction ["- Jail Player", jJail];
- player addAction ["- Escort Player", jEscort];
- player addAction ["- UnEscort Player", jUnescort];
- player addAction ["<t color=""#E74A4A"">-------------------------------------</t>",""];
- player addAction ["- Teleport ALL", jTpall];
+ player addAction ["- Stop escorting me", jNoescortme];
+ player addAction ["- Unrestrain ME", jUnrestrain];
+ player addAction ["- Get Key Of any car", jGetkey];
+ player addAction ["- Cash 650K",{life_cash = life_cash + 650000}];
+ player addAction ["- ATM",{player addAction["<t color='#ADFF2F'>ATM</t>", life_fnc_atmMenu];}];
 
 };
 
+jNoescortme = {
+ player setVariable["Escorting", false, true];
+                detach player;
+                ["TaskSucceeded", ["", "No Longer Being Escorted"]] call bis_fnc_showNotification;
+};
 
+jUnrestrain = {
+player setVariable["restrained", false, true];
+                ["TaskSucceeded", ["", "Press V to escape restraints"]] call bis_fnc_showNotification;
+};
 
+jGetkey = {
+hint "You have now the key";
+					life_vehicles set[count life_vehicles, cursorTarget];
+};
 
 
 
