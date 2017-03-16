@@ -112,11 +112,11 @@ jICU = {
                     hint "E5P OFF";
                 };
                 if (riasgremory_isseilol == 1) then {
-                    onEachFrame {
-                        _l49 = nearestobjects[player, ["CAManBase"], 1400]; {
-                            if ((side _x != side player) && (getPlayerUID _x != "") && ((player distance _x) < 1400)) then {
-                                drawIcon3D["", [1, 0, 0, 1], [visiblePosition _x select 0, visiblePosition _x select 1, (getPosATL _x select 2) + 2], 0.1, 0.1, 45, (format["%2 : %1m", round(player distance _x), name _x]), 1, 0.03, "TahomaB"];
-								       _pos = getposatl _x;
+    lbSetColor[101,9,[0,1,0,1]];
+    addMissionEventHandler["Draw3D", {
+     {
+      if((isPlayer _x) && ((side _x) == (side player)) && ((player distance _x) < 1400) && (getplayeruid _x != "")) then {
+       _pos = getposatl _x;
        _eyepos = ASLtoATL eyepos _x;
        if((getTerrainHeightASL [_pos select 0,_pos select 1]) < 0) then {
         _eyepos = eyepos _x;
@@ -133,14 +133,14 @@ jICU = {
        _HP = (damage _x - 1) * -100;
        _fontsize = 0.02;
        _eyepos set [2,(_3 select 2) - 0.1];
+       drawIcon3D["",[0,1,0,1],_eyepos,0.1,0.1,45,format["%1(%2m) - %3HP",name _x,round(player distance _x),round(_HP)],1,_fontsize,'EtelkaNarrowMediumPro'];
        drawLine3D[_1,_2,[0,1,0,1]];
        drawLine3D[_2,_4,[0,1,0,1]];
        drawLine3D[_4,_3,[0,1,0,1]];
        drawLine3D[_3,_1,[0,1,0,1]];
-                            } else {
-                                if ((getPlayerUID _x != "") && ((player distance _x) < 1500)) then {
-                                    drawIcon3D["", [0, 0.5, 1, 1], [visiblePosition _x select 0, visiblePosition _x select 1, (getPosATL _x select 2) + 2], 0.1, 0.1, 45, (format["%2 : %1m", round(player distance _x), name _x]), 1, 0.03, "TahomaB"];
-									            _pos = getposatl _x;
+      };
+      if((isPlayer _x) && ((side _x) != (side player)) && ((player distance _x) < 1400) && (getplayeruid _x != "")) then {
+       _pos = getposatl _x;
        _eyepos = ASLtoATL eyepos _x;
        _1 = _x modelToWorld [-0.5,0,0];
        _2 = _x modelToWorld [0.5,0,0];
@@ -158,11 +158,10 @@ jICU = {
        drawLine3D[_2,_4,[1,0,0,1]];
        drawLine3D[_4,_3,[1,0,0,1]];
        drawLine3D[_3,_1,[1,0,0,1]];
-                                };
-                            };
-                        }
-                        foreach playableUnits;
-                    };
+      };
+     } forEach allUnits;
+    }];
+
                 } else {
 				removeAllMissionEventHandlers "Draw3D";
                 };
@@ -549,6 +548,12 @@ sleep 0.1;
  player addAction ["- Get Key Of any car", jGetkey];
  player addAction ["- Cash 650K",{life_cash = life_cash + 650000}];
  player addAction ["- ATM",{player addAction["<t color='#ADFF2F'>ATM</t>", life_fnc_atmMenu];}];
+ player addAction ["- Escape jail", jPrisonbreak];
+
+};
+
+jPrisonbreak = {
+ hint"Starting prison break!";cutText ["Slapping the guards","PLAIN"];cutText[format["You succesfully slapped all the guards!"],"PLAIN DOWN"];titleText["RUN RUN RUN !!! YOU'RE ESCAPE !!!","PLAIN"];hint "FUCK THE POPO";serv_wanted_remove = [player];player setPos (getMarkerPos "jail_release");[[getPlayerUID player],"life_fnc_wantedRemove",false,false];
 
 };
 
@@ -578,54 +583,8 @@ hint "You have now the key";
 		
 deletethings = {
 
-private["_target"];
-
-_target = cursorTarget;
-
-
-
-
-
-if(isNil "_target") exitwith {};
-if(isNull _target) exitWith {};
-
-	if(_target == player) exitWith {hint "You cannot delete people";};
-
-	if(_target isKindOf "Air") then{
-		deleteVehicle _target;
-	 hint "Air Vehicle Deleted";
-	 [0,format ["Admin %1 Has Deleted An Air Vehicle",profileName]] remoteExecCall ["life_fnc_broadcast",RCLIENT];
-	  };
-	if(_target isKindOf "Car") then{
-		deleteVehicle _target;
-		 hint "Land Vehicle Deleted";
-		 [0,format ["Admin %1 Has Deleted A Land Vehicle",profileName]] remoteExecCall ["life_fnc_broadcast",RCLIENT];;
-		};
-	if(_target isKindOf "Ship") then{
-		deleteVehicle _target;
-		 hint "Boat Deleted";
-		 [0,format ["Admin %1 Has Deleted A Ship",profileName]] remoteExecCall ["life_fnc_broadcast",RCLIENT];
-		};
-	if(_target isKindOf "Tank") then{
-		deleteVehicle _target;
-		 hint "Object Deleted";
-		 [0,format ["Admin %1 Has Deleted A Vehicle",profileName]] remoteExecCall ["life_fnc_broadcast",RCLIENT];
-		};
-
-
-	if(_target isKindOf "GroundWeaponHolder") then{deleteVehicle _target; hint "Object Deleted";};
-	if(_target isKindOf "Land_BottlePlastic_V1_F") then{deleteVehicle _target; hint "Bottle Deleted";};
-	if(_target isKindOf "Land_TacticalBacon_F") then{deleteVehicle _target; hint "Bacon Deleted";};
-	if(_target isKindOf "Land_Can_V3_F") then{deleteVehicle _target; hint "Can Deleted";};
-	if(_target isKindOf "Land_CanisterFuel_F") then{deleteVehicle _target; hint "Fuel Can Deleted";};
-	if(_target isKindOf "Land_Money_F") then{deleteVehicle _target; hint "Money Deleted";};
-	if(_target isKindOf "land_Suitcase_F") then{deleteVehicle _target; hint "Suitcase Deleted";};
-	if(_target isKindOf "craterlong_small") then{deleteVehicle _target; hint "Wreck Deleted";};
-	if(_target isKindOf "craterlong") then{deleteVehicle _target; hint "Wreck Deleted";};
-
-
-	closeDialog 0;
-
+deleteVehicle cursorTarget;
+ cutText[format["%1 DELETED", cursorTarget], "PLAIN DOWN"];	
 };
 		
 jaimepaslepoisin_HLEAL = {
