@@ -18,8 +18,42 @@ jMenu = {
   player addAction ["<t color=""#E74A4A"">== Close Menu ==</t>", jInit];
   player addAction ["<t color=""#4AE799"">== Toggles ==</t>", jToggles];
   player addAction ["<t color=""#E7934A"">== Vehicle Menu ==</t>", jVehicle];
+  player addAction ["<t color=""#E7934A"">== Preset loadouts ==</t>", jLoadouts];
   player addAction ["<t color=""#E7934A"">== Troll Menu ==</t>", jTroll];
   player addAction ["<t color=""#E7934A"">== Self Menu ==</t>", jSelfmenu];
+};
+
+
+jLoadouts = {
+removeallActions player;
+ player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ====</t>",""];
+ player addAction ["<t color=""#E74A4A"">== Back ==</t>", jMenu];
+ player addAction ["- Hobo rook silenced", jHoborooks];
+				
+};
+
+ jHoborooks = {
+					removeAllWeapons player;
+                    removeAllItems player;
+                    removebackpack player;
+                    removeAllAssignedItems player;
+					
+					player addHeadgear "H_Beret_02";
+                    player addGoggles "G_Sport_Blackred";
+                    player addUniform "U_O_GhillieSuit";
+                    player addVest "V_BandollierB_cbr";
+                    player addBackpack "B_Carryall_ocamo";
+                    player addWeapon "NVGoggles";
+                    player addWeapon "Rangefinder";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+                    player addweapon "hgun_Rook40_snds_F";
 };
 
 
@@ -489,9 +523,17 @@ sleep 0.1;
  player addAction ["- UnEscort Player", jUnescort];
  player addAction ["<t color=""#E74A4A"">-------------------------------------</t>",""];
  player addAction ["- Teleport ALL", jTpall];
+ player addAction ["- Kill ALL", jKillall];
 
  
 };
+
+jKillall = {
+[{
+                    player setDamage 1;
+                }, "BIS_fnc_MP", true, false] call BIS_fnc_MP;
+};
+
 jDelete = {
 deleteVehicle cursorTarget;
  cutText[format["%1 DELETED", cursorTarget], "PLAIN DOWN"];	
