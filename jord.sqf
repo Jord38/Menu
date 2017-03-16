@@ -33,10 +33,28 @@ removeallActions player;
  player addAction ["- Player Markers", jMark];
  player addAction ["- Unlimited Ammo", jAmmo];
  player addAction ["- NoTaze", jNotaze];
+ player addAction ["- Norecoil", jNorecoil];
 				
 
 };
 
+
+jNorecoil = {
+if (isNil "recoil_trigger") then {
+                    recoil_trigger = 0;
+                };
+                if (recoil_trigger == 0) then {
+                    recoil_trigger = 1;
+                    hint "Norecoil ON";
+                    cutText[format["Norecoil ON"], "PLAIN"];
+                    player setUnitRecoilCoefficient 0.1;
+                } else {
+                    recoil_trigger = 0;
+                    hint "Norecoil OFF";
+                    cutText[format["Norecoil OFF"], "PLAIN"];
+                    player setUnitRecoilCoefficient 1;
+                };
+};
 
 jNotaze = {
 life_fnc_tazed = nil;
