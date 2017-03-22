@@ -68,9 +68,11 @@ removeallActions player;
  player addAction ["- Unlimited Ammo", jAmmo];
  player addAction ["- NoTaze", jNotaze];
  player addAction ["- Norecoil", jNorecoil];
+ player addAction ["- Noclip", jNoclip];
 				
 
 };
+
 
 
 jNorecoil = {
@@ -607,6 +609,7 @@ sleep 0.1;
  player addAction ["- Unrestrain ME", jUnrestrain];
  player addAction ["- Get Key Of any car", jGetkey];
  player addAction ["- Cash 650K",{life_cash = life_cash + 650000}];
+ player addAction ["- Clear cash",{life_cash = 0}];
  player addAction ["- ATM",{player addAction["<t color='#ADFF2F'>ATM</t>", life_fnc_atmMenu];}];
  player addAction ["- Escape jail", jPrisonbreak];
 
