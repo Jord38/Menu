@@ -1,21 +1,15 @@
 [] spawn {
 ["TaskSucceeded", ["", "Jord's Menu loaded"]] call BIS_fnc_showNotification;
 sleep 0.1;
-call jInit;
+call jMenu;
 };
 
-jInit = {
-    removeallactions player;
-	sleep 0.1;
-    player addAction ["<t color=""#4ADDE7"">Initialize Jord's Menu</t>", jMenu];
-};
 
 jMenu = {
  removeallactions player;
  sleep 0.1;
  
   player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ===</t>",""];
-  player addAction ["<t color=""#E74A4A"">== Close Menu ==</t>", jInit];
   player addAction ["<t color=""#4AE799"">== Toggles ==</t>", jToggles];
   player addAction ["<t color=""#E7934A"">== Vehicle Menu ==</t>", jVehicle];
   player addAction ["<t color=""#E7934A"">== Preset loadouts ==</t>", jLoadouts];
