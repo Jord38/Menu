@@ -38,13 +38,13 @@ removeallActions player;
                     removebackpack player;
                     removeAllAssignedItems player;
 					
-					player addHeadgear "H_Beret_02";
-                    player addGoggles "G_Sport_Blackred";
-                    player addUniform "U_O_GhillieSuit";
-                    player addVest "V_BandollierB_cbr";
                     player addBackpack "B_Carryall_ocamo";
                     player addWeapon "NVGoggles";
                     player addWeapon "Rangefinder";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
+					player addMagazine "30Rnd_9x21_Mag";
 					player addMagazine "30Rnd_9x21_Mag";
 					player addMagazine "30Rnd_9x21_Mag";
 					player addMagazine "30Rnd_9x21_Mag";
@@ -523,12 +523,28 @@ sleep 0.1;
  player addAction ["- Jail Player", jJail];
  player addAction ["- Escort Player", jEscort];
  player addAction ["- UnEscort Player", jUnescort];
+ player addAction ["- Revive Player", jRevive];
  player addAction ["<t color=""#E74A4A"">-------------------------------------</t>",""];
  player addAction ["- Teleport ALL", jTpall];
  player addAction ["- Kill ALL", jKillall];
 
  
 };
+
+jRevive = {
+
+private["_target"];
+_target = lbData[2902,lbCurSel (2902)];
+_target = call compile format["%1", _target];
+if(isNil "_target") exitwith {};
+if(isNull _target) exitWith {};
+
+[player] remoteExec ["life_fnc_revived",_target];
+
+
+};
+
+
 
 jKillall = {
 [{
