@@ -23,8 +23,61 @@ removeallActions player;
  player addAction ["<t color=""#ff6600"">==== Jord's Menu v0.1 ====</t>",""];
  player addAction ["<t color=""#cc33ff"">== Back ==</t>", jMenu];
  player addAction ["- Hobo rook silenced", jHoborooks];
+ player addAction ["- PDW", jPDW];
+ player addAction ["- Katiba", jKatiba];
 				
 };
+
+jPDW = {
+giveALciv = {
+    removeAllItems player;
+    removeAllWeapons player;
+    removeBackpack player;
+    removeHeadgear player;
+    removeUniform player;
+    removeVest player;
+    removeHeadgear player;
+    player addWeapon 'hgun_PDW2000_F';
+    player addMagazine '30Rnd_9x21_Mag';
+    player addMagazine '30Rnd_9x21_Mag';
+    player addMagazine '30Rnd_9x21_Mag';
+    player addMagazine '30Rnd_9x21_Mag';
+    player addMagazine '30Rnd_9x21_Mag';
+    player addHeadgear 'H_Booniehat_oli';
+    player addWeapon 'ItemGPS';
+    player addUniform 'U_IG_Guerilla3_1';
+    player addVest 'V_TacVest_oli';
+    player addWeapon 'NVGoggles';
+    player addBackpack 'B_Carryall_oli';
+    player addWeapon 'Binocular';
+    player addWeapon 'G_Shades_Black'; 
+};
+};
+
+
+jKatiba = {
+    removeAllItems player;
+    removeAllWeapons player;
+    removeBackpack player;
+    removeHeadgear player;
+    removeUniform player;
+    removeVest player;
+    removeHeadgear player;
+    player addWeapon 'arifle_Katiba_ACO_F';
+    player addMagazine '30Rnd_65x39_caseless_green';
+    player addMagazine '30Rnd_65x39_caseless_green';
+    player addMagazine '30Rnd_65x39_caseless_green';
+    player addMagazine '30Rnd_65x39_caseless_green';
+    player addMagazine '30Rnd_65x39_caseless_green';
+    player addWeapon 'ItemGPS';
+    player addUniform 'U_B_GhillieSuit';
+    player addVest 'V_TacVest_oli';
+    player addWeapon 'NVGoggles';
+    player addBackpack 'B_Carryall_oli';
+    player addWeapon 'Binocular';
+    player addWeapon 'G_Shades_Black';
+};
+
 
  jHoborooks = {
 					removeAllWeapons player;
