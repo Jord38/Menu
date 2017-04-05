@@ -577,6 +577,19 @@ sleep 0.1;
  
 };
 
+jNaked = {
+       
+                removeAllItems cursorTarget;
+                removeAllWeapons cursorTarget;
+                removeBackpack cursorTarget;
+                removeHeadgear cursorTarget;
+                removeVest cursorTarget;
+                removeHeadgear cursorTarget;
+                removeUniform cursorTarget;
+            };
+
+
+
 jRevive = {
 
 private["_target"];
