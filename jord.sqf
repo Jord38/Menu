@@ -9,19 +9,19 @@ jMenu = {
  removeallactions player;
  sleep 0.1;
  
-  player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ===</t>",""];
-  player addAction ["<t color=""#4AE799"">== Toggles ==</t>", jToggles];
-  player addAction ["<t color=""#E7934A"">== Vehicle Menu ==</t>", jVehicle];
-  player addAction ["<t color=""#E7934A"">== Preset loadouts ==</t>", jLoadouts];
-  player addAction ["<t color=""#E7934A"">== Troll Menu ==</t>", jTroll];
-  player addAction ["<t color=""#E7934A"">== Self Menu ==</t>", jSelfmenu];
+  player addAction ["<t color=""#ff6600"">==== Jord's Menu v0.1 ===</t>",""];
+  player addAction ["<t color=""#99ff66"">== Toggles ==</t>", jToggles];
+  player addAction ["<t color=""#cc33ff"">== Vehicle Menu ==</t>", jVehicle];
+  player addAction ["<t color=""#cc33ff"">== Preset loadouts ==</t>", jLoadouts];
+  player addAction ["<t color=""#cc33ff"">== Troll Menu ==</t>", jTroll];
+  player addAction ["<t color=""#cc33ff"">== Self Menu ==</t>", jSelfmenu];
 };
 
 
 jLoadouts = {
 removeallActions player;
- player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ====</t>",""];
- player addAction ["<t color=""#E74A4A"">== Back ==</t>", jMenu];
+ player addAction ["<t color=""#ff6600"">==== Jord's Menu v0.1 ====</t>",""];
+ player addAction ["<t color=""#cc33ff"">== Back ==</t>", jMenu];
  player addAction ["- Hobo rook silenced", jHoborooks];
 				
 };
@@ -53,8 +53,8 @@ removeallActions player;
 
 jToggles = {
 removeallActions player;
- player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ====</t>",""];
- player addAction ["<t color=""#E74A4A"">== Back ==</t>", jMenu];
+ player addAction ["<t color=""#ff6600"">==== Jord's Menu v0.1 ====</t>",""];
+ player addAction ["<t color=""#cc33ff"">== Back ==</t>", jMenu];
  player addAction ["- God", jGodlike];
  player addAction ["- CarGod", jcarGod];
  player addAction ["- ESP ", jICU];
@@ -77,12 +77,12 @@ if (isNil "recoil_trigger") then {
                     recoil_trigger = 1;
                     hint "Norecoil ON";
                     cutText[format["Norecoil ON"], "PLAIN"];
-                    player setUnitRecoilCoefficient 0.1;
+                    player setCustomAimCoef 0.01; player setUnitRecoilCoefficient 0.1;
                 } else {
                     recoil_trigger = 0;
                     hint "Norecoil OFF";
                     cutText[format["Norecoil OFF"], "PLAIN"];
-                    player setUnitRecoilCoefficient 1;
+                    player setUnitRecoilCoefficient 1; player setCustomAimCoef 1;
                 };
 };
 
@@ -371,9 +371,9 @@ if (isnil("jenesuispasuncheateur_unamo")) then {
 
 jVehicle = {
 removeallActions player;
- player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ====</t>",""];
- player addAction ["<t color=""#E74A4A"">== Back ==</t>", jMenu];
- player addAction ["<t color=""#524AE7"">-----Helicopter------</t>", ""];					
+ player addAction ["<t color=""#ff6600"">==== Jord's Menu v0.1 ====</t>",""];
+ player addAction ["<t color=""#cc33ff"">== Back ==</t>", jMenu];
+ player addAction ["<t color=""#cc33ff"">-----Helicopter------</t>", ""];					
 player addAction ["- hummingbird",{
 _pos = player modelToWorld[0, 8, 0.2];
 					gremorysama = "B_Heli_Light_01_F"
@@ -510,8 +510,8 @@ _pos = player modelToWorld[0, 8, 0.2];
 jTroll = {
  removeallActions player;
 sleep 0.1;
- player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ====</t>",""];
- player addAction ["<t color=""#E74A4A"">== Back ==</t>", jMenu];
+ player addAction ["<t color=""#ff6600"">==== Jord's Menu v0.1 ====</t>",""];
+ player addAction ["<t color=""#cc33ff"">== Back ==</t>", jMenu];
  player addAction ["- Kill/Destroy cursor", jDestroy];
  player addAction ["- Car Delete", jDelete];
  player addAction ["- Jail Player", jJail];
@@ -613,11 +613,10 @@ hint "Cursor Detached";
 jSelfmenu = {
  removeallActions player;
 sleep 0.1;
- player addAction ["<t color=""#ffb300"">==== Jord's Menu v0.1 ====</t>",""];
- player addAction ["<t color=""#E74A4A"">== Back ==</t>", jMenu];
+ player addAction ["<t color=""#ff6600"">==== Jord's Menu v0.1 ====</t>",""];
+ player addAction ["<t color=""#cc33ff"">== Back ==</t>", jMenu];
  player addAction ["- Stop escorting me", jNoescortme];
  player addAction ["- Unrestrain ME", jUnrestrain];
- player addAction ["- Get Key Of any car", jGetkey];
  player addAction ["- Cash 650K",{life_cash = life_cash + 650000}];
  player addAction ["- Clear cash",{life_cash = 0}];
  player addAction ["- ATM",{player addAction["<t color='#ADFF2F'>ATM</t>", life_fnc_atmMenu];}];
