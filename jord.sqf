@@ -29,6 +29,7 @@ removeallActions player;
 };
 
 jPDW = {
+giveALciv = {
     removeAllItems player;
     removeAllWeapons player;
     removeBackpack player;
@@ -50,6 +51,7 @@ jPDW = {
     player addBackpack 'B_Carryall_oli';
     player addWeapon 'Binocular';
     player addWeapon 'G_Shades_Black'; 
+};
 };
 
 
