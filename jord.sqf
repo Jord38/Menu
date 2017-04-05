@@ -520,7 +520,6 @@ sleep 0.1;
  player addAction ["- Revive Player", jRevive];
  player addAction ["<t color=""#E74A4A"">-------------------------------------</t>",""];
  player addAction ["- Teleport ALL", jTpall];
- player addAction ["- Kill ALL", jKillall];
 
  
 };
@@ -621,8 +620,20 @@ sleep 0.1;
  player addAction ["- Clear cash",{life_cash = 0}];
  player addAction ["- ATM",{player addAction["<t color='#ADFF2F'>ATM</t>", life_fnc_atmMenu];}];
  player addAction ["- Escape jail", jPrisonbreak];
+ player addAction ["- Smoke weed", jWeed];
 
 };
+
+jWeed = {
+_smoke = "SmokeShell" createVehicle position player; 
+_smoke = "SmokeShell" createVehicle position player;
+if (vehicle player != player) then {
+	_smoke attachTo [vehicle player, [-0.6,-1,0]];
+    } else {
+    _smoke attachTo [player, [0,-0.1,1.5]];
+};
+};
+
 
 jPrisonbreak = {
  hint"Starting prison break!";cutText ["Slapping the guards","PLAIN"];cutText[format["You succesfully slapped all the guards!"],"PLAIN DOWN"];titleText["RUN RUN RUN !!! YOU'RE ESCAPE !!!","PLAIN"];hint "FUCK THE POPO";serv_wanted_remove = [player];player setPos (getMarkerPos "jail_release");[[getPlayerUID player],"life_fnc_wantedRemove",false,false];
