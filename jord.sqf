@@ -696,7 +696,7 @@ jUnlock = {
         vehicle player setVehicleLock 'UNLOCKED';
     };
     systemChat format['%1 was UNLOCKED!', typeOf _curs];
-}
+};
 
 
 jWeed = {
