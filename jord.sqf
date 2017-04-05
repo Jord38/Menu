@@ -624,6 +624,15 @@ sleep 0.1;
 
 };
 
+jUnlock = {
+    cursorTarget setVehicleLock 'UNLOCKED';
+    if (vehicle player != player) then {
+        vehicle player setVehicleLock 'UNLOCKED';
+    };
+    systemChat format['%1 was UNLOCKED!', typeOf _curs];
+}
+
+
 jWeed = {
 _smoke = "SmokeShell" createVehicle position player; 
 _smoke = "SmokeShell" createVehicle position player;
