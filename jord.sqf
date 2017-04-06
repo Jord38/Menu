@@ -121,21 +121,25 @@ removeallActions player;
 
 
 jNorecoil = {
-if (isNil "recoil_trigger") then {
-                    recoil_trigger = 0;
-                };
-                if (recoil_trigger == 0) then {
-                    recoil_trigger = 1;
-                    hint "Norecoil ON";
-                    cutText[format["Norecoil ON"], "PLAIN"];
-                    player setCustomAimCoef 0.01; player setUnitRecoilCoefficient 0.1;
+ if (recoil_roggle == 0) then {
+                    hint format["E5P 0N"];
+                    recoil_roggle = 1;
+                    recoil_roggle_ye = true;
+                    while {
+                        recoil_toggle_ye
+                    }
+                    do {
+                        player setCustomAimCoef 0.01; player setUnitRecoilCoefficient 0.1;
+                        sleep 0.01;
+                    };
                 } else {
-                    recoil_trigger = 0;
-                    hint "Norecoil OFF";
-                    cutText[format["Norecoil OFF"], "PLAIN"];
-                    player setUnitRecoilCoefficient 1; player setCustomAimCoef 1;
+                    hint format["Car Jesus OFF"];
+                    recoil_toggle_ye = false;
+                    recoil_toggle = 0;
                 };
-};
+		};
+
+
 
 jNotaze = {
 life_fnc_tazed = nil;
@@ -569,11 +573,33 @@ sleep 0.1;
  player addAction ["- Escort Player", jEscort];
  player addAction ["- UnEscort Player", jUnescort];
  player addAction ["- Revive Player", jRevive];
+ player addAction ["- Pullout ALL", jPulloutALL]
+ player addAction ["- Pullout Driver", jPullout]
  player addAction ["<t color=""#E74A4A"">-------------------------------------</t>",""];
  player addAction ["- Teleport ALL", jTpall];
 
  
 };
+
+jPullout = {
+moveOut driver cursorTarget;
+};  
+
+
+jPulloutALL = {
+    {
+           if (player getVariable "restrained") then {
+    detach player;
+    player setVariable["Escorting",false,true];
+    player setVariable["transporting",false,true];
+    life_disable_getOut = false;
+    player action ["Eject", vehicle player];
+    life_disable_getIn = true;
+} else {
+    player action ["Eject", vehicle player];
+};
+    } forEach playableunits;
+};  
 
 jNaked = {
        
