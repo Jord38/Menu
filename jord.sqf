@@ -377,28 +377,24 @@ jMark = {
 };               
 
 jAmmo = {
-if (isnil("jenesuispasuncheateur_unamo")) then {
-                    jenesuispasuncheateur_unamo = 0;
-                };
-                if (jenesuispasuncheateur_unamo == 0) then {
-                    jenesuispasuncheateur_unamo = 1;
-                    hint "Unlimited Ammo ON";
-                } else {
-                    jenesuispasuncheateur_unamo = 0;
-                    hint "Unlimited Ammo OFF";
-                };
-                while {
-                    jenesuispasuncheateur_unamo == 1
-                }
-                do {
-                    _l25 = primaryWeapon player;
-                    _l31 = secondaryWeapon player;
-                    player setAmmo[_l25, 999];
-                    player setAmmo[_l31, 999];
-                    (vehicle player) setVehicleAmmo 1;
-                    (vehicle player) setVehicleAmmo 1;
-                    sleep 0.01;
-                };
+if (isnil("unlim_amm")) then {
+        unlim_amm = 0;
+    };
+    if (unlim_amm == 0) then {
+        unlim_amm = 1;
+        hintSilent parseText format["<t size='1.3' color='#01DF01'>Rapid Fire Enabled</t>"];
+    } else {
+        unlim_amm = 0;
+        hintSilent parseText format["<t size='1.3' color='#01DF01'>Rapid Fire Disabled</t>"];
+    };
+    while {
+        unlim_amm == 1
+    }
+    do {
+        (vehicle player) setWeaponReloadingTime[(vehicle player), currentWeapon(vehicle player), 0];
+        player setWeaponReloadingTime[player, currentWeapon player, 0];
+        sleep 0.01;
+    };
 };
 
 
